@@ -3,25 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --Purple: hsl(259, 100%, 65%);
+  --Light-red: hsl(0, 100%, 67%);
+  --White: hsl(0, 0%, 100%);
+  --Off-white: hsl(0, 0%, 94%);
+  --Light-grey: hsl(0, 0%, 86%);
+  --Smokey-grey: hsl(0, 1%, 44%);
+  --Off-black: hsl(0, 0%, 8%);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--Off-black);
+  background: var(--Off-white);
+  height: 100dvh;
+  display: flex;
+}
+
+.after::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--Off-black);
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
