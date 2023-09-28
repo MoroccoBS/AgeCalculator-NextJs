@@ -3,10 +3,11 @@ type Input = {
   month: string;
   year: string;
 };
+
 export const CalculateAge = (input: Input) => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth() + 1; // January is 0
+  const currentMonth = currentDate.getMonth() + 1;
   const currentDay = currentDate.getDate();
   const { day, month, year } = input;
 
@@ -18,16 +19,35 @@ export const CalculateAge = (input: Input) => {
   let AgeMonth = currentMonth - parsedMonth;
   let AgeYear = currentYear - parsedYear;
 
+  if (AgeDay < 0 && AgeMonth <= 0 && AgeYear <= 0) {
+    return {
+      display: {
+        day: "0",
+        month: "0",
+        year: "0",
+      },
+    };
+  }
+
   if (AgeMonth < 0 || (AgeMonth === 0 && AgeDay < 0)) {
     AgeYear--;
     AgeMonth += 12;
   }
 
-  if (parsedMonth === 12 && parsedDay === 29 && isLeapYear(parsedYear)) {
+  if (AgeDay < 0) {
+    const daysInPreviousMonth = new Date(
+      currentYear,
+      currentMonth - 1,
+      0
+    ).getDate();
+    AgeMonth--;
+    AgeDay += daysInPreviousMonth;
+  }
+
+  if (parsedMonth === 2 && parsedDay === 29 && isLeapYear(parsedYear)) {
     AgeDay--;
   }
 
-  console.log(AgeDay, AgeMonth, AgeYear);
   return {
     display: {
       day: AgeDay.toString(),
@@ -35,8 +55,6 @@ export const CalculateAge = (input: Input) => {
       year: AgeYear.toString(),
     },
   };
-  // console.log(parsedDay, parsedMonth, parsedYear);
-  // console.log(currentDate, currentYear, currentMonth, currentDay);
 };
 
 const isLeapYear = (year: number) => {

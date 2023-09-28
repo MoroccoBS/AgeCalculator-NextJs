@@ -24,7 +24,7 @@ export default function Input({
       </h1>
       <input
         type="text"
-        className={`md:text-2xl text-lg w-full h-full rounded-md py-4 px-6 placeholder:text-lg md:placeholder:text-2xl outline  outline-1 focus:outline-Purple transition-all ${
+        className={`md:text-2xl text-lg w-full h-full rounded-md py-4 sm:px-6 px-4 placeholder:text-lg md:placeholder:text-2xl outline  outline-1 focus:outline-Purple transition-all ${
           error?.isError ? "outline-LightRed" : "outline-gray-300"
         }`}
         placeholder={type === "day" ? "DD" : type === "month" ? "MM" : "YYYY"}

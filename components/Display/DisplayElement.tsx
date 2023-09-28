@@ -6,7 +6,7 @@ interface DisplayElementProps {
 }
 
 export default function DisplayElement({ value, type }: DisplayElementProps) {
-  const formattedValue = value === "" || value === "0" ? "--" : value;
+  const formattedValue = value === "" ? "--" : value === "0" ? "00" : value;
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
